@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg,CardBody, CardText,  CardTitle } from 'reactstrap';
 
 
-class CampsiteInfoComponent extends Component {
+
 
    //renderCampsite method
-    renderCampsite(campsite) {
+   function RenderCampsite({campsite}) {
         if (campsite) {
             return (
                 <div className="col-md-5 m-1">
@@ -23,7 +23,7 @@ class CampsiteInfoComponent extends Component {
     } 
 
   
-     renderComments(comments) {
+    function RenderComments({comments}) {
         if(comments) {
             return (
                 <div className="col-md-5 m-1">
@@ -41,12 +41,14 @@ class CampsiteInfoComponent extends Component {
     }
     
     // eslint-disable-next-line no-dupe-class-members
-    render() {
-        if(this.props.campsite)  {
+    function CampsiteInfoComponent(props) {
+        if(props.campsite)  {
             return (
+                <div className="container">
                 <div className="row">
-                    {this.renderCampsite(this.props.campsite)}
-                    {this.renderComments(this.props.campsite.comments)}
+                    <RenderCampsite campsite={props.campsite} />
+                    <RenderComments comments={props.campsite.comments} />
+                </div>
                 </div>
             )
         } else {
@@ -56,7 +58,7 @@ class CampsiteInfoComponent extends Component {
         }
     }
   
-}
+
 
 
 export default CampsiteInfoComponent;
