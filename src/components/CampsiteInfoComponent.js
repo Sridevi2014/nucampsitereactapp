@@ -55,12 +55,8 @@ class CampsiteInfoComponent extends Component {
             )
         }
     }
-
   
 }
- 
-
-  
 
 
 export default CampsiteInfoComponent;
