@@ -2,8 +2,6 @@ import React from 'react';
 import { Card, CardImg,CardBody, CardText,  CardTitle } from 'reactstrap';
 
 
-
-
    //renderCampsite method
    function RenderCampsite({campsite}) {
         if (campsite) {
@@ -47,7 +45,7 @@ import { Card, CardImg,CardBody, CardText,  CardTitle } from 'reactstrap';
                 <div className="container">
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments comments={props.campsite.comments} />
+                    <RenderComments comments={props.comments} />
                 </div>
                 </div>
             )
