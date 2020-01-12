@@ -3,28 +3,28 @@ import { Breadcrumb, BreadcrumbItem,
     Button, Form, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-class Contact extends Component { 
-    
-        constructor(props) {
-            super(props);
-    
-            this.state = {
-                firstName: '',
-                lastName: '',
-                phoneNum: '',
-                email: '',
-                agree: false,
-                contactType: 'By Phone',
-                feedback: '',
-                touched: {
-                    firstName: false,
-                    lastName: false,
-                    phoneNum: false,
-                    email: false
-                }
-            };          
-            this.handleInputChange = this.handleInputChange.bind(this);
-            this.handleSubmit = this.handleSubmit.bind(this);
+class Contact extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            phoneNum: '',
+            email: '',
+            agree: false,
+            contactType: 'By Phone',
+            feedback: '',
+            touched: {
+                firstName: false,
+                lastName: false,
+                phoneNum: false,
+                email: false
+            }
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     //form validate
@@ -65,63 +65,63 @@ class Contact extends Component {
         return errors;
     }
 
-              handleBlur = (field) => () => {
-             this.setState({
-               touched: {...this.state.touched, [field]: true}
-              });
-             }
-            
-            handleInputChange(event) {
-                const target = event.target;
-                const value = target.type === 'checkbox' ? target.checked : target.value;
-                const name = target.name;
-            
-                this.setState({
-                  [name]: value
-                });
-            }
-             //handle submit
-            handleSubmit(event) {
-                console.log('Current state is: ' + JSON.stringify(this.state));
-                alert('Current state is: ' + JSON.stringify(this.state));
-                event.preventDefault();
-            }
+    handleBlur = (field) => () => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
 
-    render () {
-        const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email);  
-    return (
-    <div className="container">
-            <div className="row">
-                <div className="col">
-                     <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Contact Us</BreadcrumbItem>
-                    </Breadcrumb>
-                    <h2>Contact Us</h2>
-                    <hr />
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+    //handle submit
+    handleSubmit(event) {
+        console.log('Current state is: ' + JSON.stringify(this.state));
+        alert('Current state is: ' + JSON.stringify(this.state));
+        event.preventDefault();
+    }
+
+    render() {
+        const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email);
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>Contact Us</BreadcrumbItem>
+                        </Breadcrumb>
+                        <h2>Contact Us</h2>
+                        <hr />
+                    </div>
                 </div>
-            </div>
 
-            <div className="row row-content align-items-center">
-                <div className="col-sm-4">
-                    <h5>Our Address</h5>
-                    <address>
-                        1 Nucamp Way<br />
-                        Seattle, WA 98001<br />
-                        U.S.A.
+                <div className="row row-content align-items-center">
+                    <div className="col-sm-4">
+                        <h5>Our Address</h5>
+                        <address>
+                            1 Nucamp Way<br />
+                            Seattle, WA 98001<br />
+                            U.S.A.
                     </address>
+                    </div>
+                    <div className="col">
+                        <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone"></i> 1-206-555-1234</a><br />
+                        <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o"></i> campsites@nucamp.co</a>
+                    </div>
                 </div>
-                <div className="col">
-                    <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone"></i> 1-206-555-1234</a><br />
-                    <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o"></i> campsites@nucamp.co</a>
-                </div>
-            </div>
-          {/*  controlled form */}
-            <div className="row row-content">
-                   <div className="col-12">
-                      <h2>Send us your Feedback</h2>
-                      <hr />
-                   </div>
+                {/*  controlled form */}
+                <div className="row row-content">
+                    <div className="col-12">
+                        <h2>Send us your Feedback</h2>
+                        <hr />
+                    </div>
                     <div className="col-md-10">
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup row>
@@ -133,7 +133,7 @@ class Contact extends Component {
                                         invalid={errors.firstName}
                                         onBlur={this.handleBlur("firstName")}
                                         onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.firstName}</FormFeedback>
+                                    <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -145,8 +145,8 @@ class Contact extends Component {
                                         invalid={errors.lastName}
                                         onBlur={this.handleBlur("lastName")}
                                         onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.lastName}</FormFeedback>
-                                </Col>                        
+                                    <FormFeedback>{errors.lastName}</FormFeedback>
+                                </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="phoneNum" md={2}>Phone</Label>
@@ -157,7 +157,7 @@ class Contact extends Component {
                                         invalid={errors.phoneNum}
                                         onBlur={this.handleBlur("phoneNum")}
                                         onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.phoneNum}</FormFeedback>
+                                    <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -169,11 +169,11 @@ class Contact extends Component {
                                         invalid={errors.email}
                                         onBlur={this.handleBlur("email")}
                                         onChange={this.handleInputChange} />
-                                        <FormFeedback>{errors.email}</FormFeedback>
+                                    <FormFeedback>{errors.email}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Col md={{size: 4, offset: 2}}>
+                                <Col md={{ size: 4, offset: 2 }}>
                                     <FormGroup check>
                                         <Label check>
                                             <Input type="checkbox"
@@ -186,8 +186,8 @@ class Contact extends Component {
                                 </Col>
                                 <Col md={4}>
                                     <Input type="select" name="contactType"
-                                            value={this.state.contactType}
-                                            onChange={this.handleInputChange}>
+                                        value={this.state.contactType}
+                                        onChange={this.handleInputChange}>
                                         <option>By Phone</option>
                                         <option>By Email</option>
                                     </Input>
@@ -203,7 +203,7 @@ class Contact extends Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Col md={{size: 10, offset: 2}}>
+                                <Col md={{ size: 10, offset: 2 }}>
                                     <Button type="submit" color="primary">
                                         Send Feedback
                                     </Button>
