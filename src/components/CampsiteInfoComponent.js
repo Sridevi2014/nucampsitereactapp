@@ -38,8 +38,8 @@ function RenderComments({ comments }) {
                 <CommentForm />
             </div>
         )
-    }
-    return <div />
+    } 
+    return (<div />)
 
 }
 
