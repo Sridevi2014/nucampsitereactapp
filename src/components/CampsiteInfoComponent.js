@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg,CardBody, CardText,  Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -76,6 +77,7 @@ class CommentForm extends Component {
                 <Button outline onClick={this.toggleModal}>
                     <i className="fa fa-pencil" /> Submit Comment
                     </Button>
+                    
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
@@ -134,6 +136,28 @@ class CommentForm extends Component {
 
 // Campsiteinfocomponent function
 function CampsiteInfoComponent(props) {
+
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     if (props.campsite) {
         return (
             <div className="container">
