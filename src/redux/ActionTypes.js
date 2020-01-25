@@ -14,7 +14,7 @@ export const PROMOTIONS_LOADING = 'PROMOTIONS_LOADING';
 export const PROMOTIONS_FAILED = 'PROMOTIONS_FAILED';
 
 // partners Action types task1
- export const ADD_PARTNERS = 'ADD_PARTNERS';
+export const ADD_PARTNERS = 'ADD_PARTNERS';
 export const PARTNERS_LOADING = 'PARTNERS_LOADING';
-export const PARTNERS_FAILED = 'PARTNERS_FAILED'; 
+export const PARTNERS_FAILED = 'PARTNERS_FAILED';
  

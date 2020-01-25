@@ -3,6 +3,7 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 //import { Fade, Stagger } from 'react-animation-components';
+//import { baseUrl } from '../shared/baseUrl'
 
 //added RenderPartner Function 
 function RenderPartner({partner}) {
@@ -21,7 +22,6 @@ function RenderPartner({partner}) {
 }
 
 
- 
 
 function PartnerList(props) {
     
@@ -119,8 +119,7 @@ function About(props) {
                     <h3>Community Partners</h3>
                 </div>
                 <div className="col mt-4">
-                    <Media list>
-                   {/*  {partners} */}                 
+                    <Media list>                               
                        <PartnerList partners={props.partners} /> 
                     </Media>
                 </div>
