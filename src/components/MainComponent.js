@@ -9,7 +9,7 @@ import About from './AboutComponent';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { actions } from 'react-redux-form';
-import { postComment, fetchCampsites, fetchComments, fetchPromotions, fetchPartners, postFeedback  } from '../redux/ActionCreators';
+import { postComment, fetchCampsites, fetchComments, fetchPromotions, fetchPartners, postFeedback } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
@@ -27,7 +27,9 @@ const mapDispatchToProps = {
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
     fetchComments: () => (fetchComments()),
     fetchPromotions: () => (fetchPromotions()),
-    fetchPartners: () => (fetchPartners()) 
+    fetchPartners: () => (fetchPartners()),
+    postFeedback: (firstName, lastName, phoneNum, email, agree, contactType, feedback) => (postFeedback(firstName, lastName, phoneNum, email, agree, contactType, feedback))
+	
 
 };
 
@@ -41,6 +43,7 @@ class Main extends Component {
         this.props.fetchComments();
         this.props.fetchPromotions();
         this.props.fetchPartners(); 
+       
 
     }
 
