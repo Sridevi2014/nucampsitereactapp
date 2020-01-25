@@ -3,6 +3,7 @@ import { Breadcrumb, BreadcrumbItem,
     Button,  Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors  } from 'react-redux-form';
+import { Spring } from 'react-spring/renderprops';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -46,6 +47,11 @@ class Contact extends Component {
     render() {
        
         return (
+
+            <Spring from={{ opacity: 0, marginTop: 800 }} to={{ opacity: 1, marginTop: 0 }}>
+            { props => (
+                        <div  className="App" style={ props }> 
+
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -222,6 +228,19 @@ class Contact extends Component {
                     </div>
                 </div>
             </div>
+
+
+
+
+            </div>
+)
+
+}
+
+</Spring>
+
+
+
         );
     }
 }

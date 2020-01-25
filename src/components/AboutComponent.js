@@ -1,6 +1,8 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+//import { Fade, Stagger } from 'react-animation-components';
 
 //added RenderPartner Function 
 function RenderPartner({partner}) {
@@ -18,15 +20,52 @@ function RenderPartner({partner}) {
     return <div />;
 }
 
-function About(props) {
-   const partners = props.partners.map(partner => {
-        return (
-               <Media tag-li Key={partner.id}>
-                <RenderPartner partner={partner} />
-              </Media>
-        );
-    });  
 
+ 
+
+function PartnerList(props) {
+    
+    const partners = props.partners.partners.map(partner => {
+        return(
+            <Media tag="li" key={partner.id}>
+                <RenderPartner partner={partner} />
+            </Media>
+        )
+    });
+
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    
+    return (
+        <div className="col mt-4">
+            <Media list>
+                {partners}
+            </Media>
+        </div>
+    );
+}   
+ 
+//about function
+function About(props) {
+  
     return (
         <div className="container">
             <div className="row">
@@ -81,7 +120,8 @@ function About(props) {
                 </div>
                 <div className="col mt-4">
                     <Media list>
-                        {partners}
+                   {/*  {partners} */}                 
+                       <PartnerList partners={props.partners} /> 
                     </Media>
                 </div>
             </div>
