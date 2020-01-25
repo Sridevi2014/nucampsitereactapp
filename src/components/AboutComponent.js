@@ -2,15 +2,15 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-//import { Fade, Stagger } from 'react-animation-components';
-//import { baseUrl } from '../shared/baseUrl'
+import { Fade, Stagger } from 'react-animation-components';
+import { baseUrl } from '../shared/baseUrl'
 
 //added RenderPartner Function 
 function RenderPartner({partner}) {
     if (partner) {
         return (
         <React.Fragment>
-            <Media object src={partner.image} alt={partner.name} width="150"></Media>
+            <Media object src={ baseUrl + partner.image} alt={partner.name} width="150"></Media>
             <Media body className="ml-5 mb-4">
                 <Media heading>{partner.name}</Media>
                 {partner.description}
@@ -22,16 +22,28 @@ function RenderPartner({partner}) {
 }
 
 
-
+ 
 function PartnerList(props) {
     
-    const partners = props.partners.partners.map(partner => {
+   /*  const partners = props.partners.partners.map(partner => {
         return(
             <Media tag="li" key={partner.id}>
                 <RenderPartner partner={partner} />
             </Media>
         )
+    });  */
+
+    const partners = props.partners.partners.map(partner => {
+        return(
+            <Fade in key={partner.id}>
+                <Media tag="li">
+                    {/* Partner is being passed as a prop because it has already been rendered in the Main componenet. */}
+                    <RenderPartner partner={partner} />
+                </Media>
+            </Fade>
+        )
     });
+
 
     if (props.isLoading) {
         return (
@@ -57,7 +69,9 @@ function PartnerList(props) {
     return (
         <div className="col mt-4">
             <Media list>
-                {partners}
+            <Stagger in>
+            {partners}
+            </Stagger>
             </Media>
         </div>
     );

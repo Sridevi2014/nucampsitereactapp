@@ -188,44 +188,31 @@ export const addPartners = partners => ({
     payload: partners
 });
 
-/* //postfeedback --task2
-export const addComment = comment => ({
-    type: ActionTypes.ADD_COMMENT,
-    payload: comment
-});
 
-export const postFeedback = (feedback) => dispatch => {
-    
-    const newFeedback = {
-        firstname: firstname,
-        lastname: lastname,
-        phone: phone,
-        email: email
-    };
-  
+export const postFeedback = (feedback) => () => {
 
     return fetch(baseUrl + 'feedback', {
-            method: "POST",
-            body: JSON.stringify(newFeedback),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+        method: "POST",
+        body: JSON.stringify(feedback),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
         .then(response => {
-                if (response.ok) {
-                    return response;
-                } else {
-                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                    error.response = response;
-                    throw error;
-                }
-            },
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
             error => { throw error; }
         )
         .then(response => response.json())
-        .then(response => dispatch(addComment(response)))
+        .then(response => alert("Thank you for your feedback\n" + JSON.stringify(response)))
         .catch(error => {
             console.log('post comment', error.message);
             alert('Your comment could not be posted\nError: ' + error.message);
         });
-}; */
+};
